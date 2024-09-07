@@ -3,69 +3,67 @@ import time
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+from POM.Homepage import HomePage
 from Utilities.BaseClass import Baseclass
 
 
 class TestBuyDress(Baseclass):
     def test_buy_dress(self):
-        AllPrices = self.driver.find_elements(By.XPATH, "//div[@class='inventory_item_price']")
+        Home = HomePage(self.driver)   # Create an Object of the class along with driver argument
+        AllPrices = Home.GetPrice()
         for price in AllPrices:
             price_text = price.text.replace('$', '')
             if float(price_text) >= 25:
                 print(f"Price: {price.text}")
-                Button = price.find_element(By.XPATH, "following-sibling::button")
+                Button = Home.ButtonClick(price)
                 Button.click()
 
-        Cart = self.driver.find_element(By.XPATH, "//a[@class='shopping_cart_link']")
-        Cart.click()
-        Continue_ShoppingCart = self.driver.find_element(By.XPATH, "//button[@id='continue-shopping']")
+        Cart_page = Home.CartClick()
+        Continue_ShoppingCart = Cart_page.ContinueShoppingCartClick()
         Continue_ShoppingCart.click()
 
-        AllPrices = self.driver.find_elements(By.XPATH, "//div[@class='inventory_item_price']")
+        AllPrices = Home.GetPrice()
         for price in AllPrices:
             price_text = price.text.replace('$', '')
             if float(price_text) >= 40:
-                Remove = self.driver.find_element(By.XPATH, "//div[@class='pricebar']//button[text()='Remove']")
+                Remove = Home.RemoveItems()
                 Remove.click()
 
-        Cart = self.driver.find_element(By.XPATH, "//a[@class='shopping_cart_link']")
-        Cart.click()
+        Home.CartClick()
 
-        Price_In_Cart = self.driver.find_element(By.XPATH, "(//div[@class='inventory_item_price'])[1]").text
+        Price_In_Cart = Cart_page.PriceInCartText().text
         print(f"Total Price In Cart: {Price_In_Cart}")
 
-        Checkout = self.driver.find_element(By.XPATH, "//button[@id='checkout']")
-        Checkout.click()
+        Detail_Page = Cart_page.CheckOutClick()
 
-        FirstName = self.driver.find_element(By.ID, "first-name")
+        FirstName = Detail_Page.FirstName()
         FirstName.send_keys("John")
-        LastName = self.driver.find_element(By.ID, "last-name")
+        LastName = Detail_Page.LastName()
         LastName.send_keys("Doe")
-        ZipCode = self.driver.find_element(By.ID, "postal-code")
+        ZipCode = Detail_Page.ZipCode()
         ZipCode.send_keys("60780")
 
-        Button_ctn = self.driver.find_element(By.ID, "continue")
-        Button_ctn.click()
+        Payment_Page = Detail_Page.ContinueButton()
 
-        Sub_Total = self.driver.find_element(By.XPATH, "//div[@class='summary_subtotal_label']")
+
+        Sub_Total = Payment_Page.SubAmount()
         Sub_Total_Price = Sub_Total.text.replace('Item total:', '')
         print(f"Sub Total: {Sub_Total_Price}")
 
         assert Price_In_Cart in Sub_Total_Price
 
-        Finish = self.driver.find_element(By.XPATH, "//button[@id='finish']")
-        Finish.click()
+        Success_page = Payment_Page.Finish_Button()
 
-        Success_Message = self.driver.find_element(By.XPATH, "//h2[normalize-space()='Thank you for your order!']").text
+        Success_Message = Success_page.Success_Message().text
         print(f"Success Message: {Success_Message}")
 
         assert "Thank you for your order!" in Success_Message
 
-        Menu = self.driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
+        Menu = Success_page.Menu_Bar()
         Menu.click()
 
         Action = ActionChains(self.driver)
-        Logout = self.driver.find_element(By.XPATH, "//a[@id='logout_sidebar_link']")
+        Logout = Success_page.Logout_Link()
         Action.move_to_element(Logout).click().perform()
 
 
