@@ -1,8 +1,4 @@
-import time
-
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-
 from POM.Homepage import HomePage
 from Utilities.BaseClass import Baseclass
 
