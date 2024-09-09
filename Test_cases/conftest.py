@@ -18,7 +18,7 @@ def pytest_addoption(parser):
         "--password", action="store", default="secret_sauce", help="Password for login"
     )
 
-@pytest.fixture(scope='class')
+@pytest.fixture()
 def LoginSetup(request):   # Browser Code Setup
     browser_name = request.config.getoption("browser_name")
     User_name = request.config.getoption("username")         # Code From Pytest DOC related to Browser
