@@ -1,0 +1,36 @@
+2024-09-10 15:06:09,060 - INFO - Price: $29.99
+2024-09-10 15:06:09,339 - INFO - Price: $49.99
+2024-09-10 15:06:10,633 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:06:11,260 - INFO - Sub Total:  $49.99
+2024-09-10 15:06:11,261 - WARNING - Assertion Failed
+2024-09-10 15:06:11,506 - INFO - Success Message: Thank you for your order!
+2024-09-10 15:06:31,090 - INFO - Price: $29.99
+2024-09-10 15:06:31,090 - INFO - Price: $29.99
+2024-09-10 15:06:31,372 - INFO - Price: $49.99
+2024-09-10 15:06:31,372 - INFO - Price: $49.99
+2024-09-10 15:06:32,678 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:06:32,678 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:06:33,264 - INFO - Sub Total:  $49.99
+2024-09-10 15:06:33,264 - INFO - Sub Total:  $49.99
+2024-09-10 15:06:33,266 - WARNING - Assertion Failed
+2024-09-10 15:06:33,266 - WARNING - Assertion Failed
+2024-09-10 15:06:33,521 - INFO - Success Message: Thank you for your order!
+2024-09-10 15:06:33,521 - INFO - Success Message: Thank you for your order!
+2024-09-10 15:16:55,620 - INFO - Price Details of the Dress: $29.99
+2024-09-10 15:16:55,908 - INFO - Price Details of the Dress: $49.99
+2024-09-10 15:16:57,280 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:16:57,943 - DEBUG - Sub Total in the Payment Page:  $49.99
+2024-09-10 15:16:57,943 - INFO - Price in cart matches the subtotal price.
+2024-09-10 15:16:58,203 - INFO - Success Message: Thank you for your order!
+2024-09-10 15:17:18,117 - INFO - Price Details of the Dress: $29.99
+2024-09-10 15:17:18,117 - INFO - Price Details of the Dress: $29.99
+2024-09-10 15:17:18,434 - INFO - Price Details of the Dress: $49.99
+2024-09-10 15:17:18,434 - INFO - Price Details of the Dress: $49.99
+2024-09-10 15:17:19,794 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:17:19,794 - INFO - Total Price In Cart: $49.99
+2024-09-10 15:17:20,489 - DEBUG - Sub Total in the Payment Page:  $49.99
+2024-09-10 15:17:20,489 - DEBUG - Sub Total in the Payment Page:  $49.99
+2024-09-10 15:17:20,489 - INFO - Price in cart matches the subtotal price.
+2024-09-10 15:17:20,489 - INFO - Price in cart matches the subtotal price.
+2024-09-10 15:17:20,760 - INFO - Success Message: Thank you for your order!
+2024-09-10 15:17:20,760 - INFO - Success Message: Thank you for your order!

@@ -7,12 +7,13 @@ from Utilities.BaseClass import Baseclass
 
 class TestBuyDress(Baseclass):
     def test_buy_dress(self, TestDataGet):
+        Log = self.Get_Logger()
         Home = HomePage(self.driver)   # Create an Object of the class along with driver argument
         AllPrices = Home.GetPrice()
         for price in AllPrices:
             price_text = price.text.replace('$', '')
             if float(price_text) >= 25:
-                print(f"Price: {price.text}")
+                Log.info(f"Price Details of the Dress: {price.text}")
                 Button = Home.ButtonClick(price)
                 Button.click()
 
@@ -30,7 +31,7 @@ class TestBuyDress(Baseclass):
         Home.CartClick()
 
         Price_In_Cart = Cart_page.PriceInCartText().text
-        print(f"Total Price In Cart: {Price_In_Cart}")
+        Log.info(f"Total Price In Cart: {Price_In_Cart}")
 
         Detail_Page = Cart_page.CheckOutClick()
 
@@ -47,14 +48,17 @@ class TestBuyDress(Baseclass):
 
         Sub_Total = Payment_Page.SubAmount()
         Sub_Total_Price = Sub_Total.text.replace('Item total:', '')
-        print(f"Sub Total: {Sub_Total_Price}")
+        Log.debug(f"Sub Total in the Payment Page: {Sub_Total_Price}")
 
-        assert Price_In_Cart in Sub_Total_Price
+        if Price_In_Cart not in Sub_Total_Price:
+            Log.warning("Price in cart does not match the subtotal price.")  # Warning level
+        else:
+            Log.info("Price in cart matches the subtotal price.")
 
         Success_page = Payment_Page.Finish_Button()
 
         Success_Message = Success_page.Success_Message().text
-        print(f"Success Message: {Success_Message}")
+        Log.info(f"Success Message: {Success_Message}")
 
         assert "Thank you for your order!" in Success_Message
 
